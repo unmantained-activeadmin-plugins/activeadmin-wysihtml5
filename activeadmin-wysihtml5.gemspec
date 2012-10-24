@@ -6,7 +6,7 @@ require "active_admin/editor/version"
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "activeadmin-wysihtml5"
-  s.version     = ActiveAdmin::Editor::VERSION
+  s.version     = ActiveAdmin::Wysihtml5::VERSION
   s.authors     = ["Eric Holmes"]
   s.email       = ["eric@ejholmes.net"]
   s.homepage    = "https://github.com/ejholmes/active_admin_editor"
