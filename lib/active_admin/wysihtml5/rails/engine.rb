@@ -14,12 +14,10 @@ module ActiveAdmin
 
         initializer "register resource" do
           ActiveAdmin.application.load_paths += [ File.expand_path('../admin', File.dirname(__FILE__)) ]
-        end
-
-        config.to_prepare do
           ActiveAdmin.application.register_stylesheet "active_admin/wysihtml5.css", :media => :screen
           ActiveAdmin.application.register_javascript "active_admin/wysihtml5.js"
         end
+
       end
     end
   end

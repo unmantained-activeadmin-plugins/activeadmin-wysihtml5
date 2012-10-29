@@ -1,8 +1,7 @@
 (($) ->
   $.fn.active_admin_editor = (options) ->
-    active_admin_editor = $(this)
-
-    if active_admin_editor.length > 0
+    this.each ->
+      active_admin_editor = $(this)
       textarea_id = active_admin_editor.find('textarea').attr('id')
       toolbar_id  = active_admin_editor.find('.active_admin_editor_toolbar').attr('id')
 
@@ -11,8 +10,6 @@
         stylesheets: "/assets/active_admin/editor/wysiwyg.css",
         parserRules: wysihtml5ParserRules
       })
-
-      window.editor = editor
 
       image_dialog = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"]')
 
@@ -104,6 +101,5 @@
           clear_assets()
           load_assets() if image_input.val() == 'http://'
 
-  $ ->
-    $('.active_admin_editor').each(->$(@).active_admin_editor())
+  $ -> $('.active_admin_editor').active_admin_editor()
 )(jQuery)
