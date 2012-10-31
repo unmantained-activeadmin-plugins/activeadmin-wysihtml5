@@ -1,0 +1,35 @@
+it:
+  formtastic:
+    wysihtml5:
+      command:
+        bold: "Grassetto"
+        italic: "Corsivo"
+        link: "Link"
+        image: "Immagine"
+        ul: "Lista puntata"
+        ol: "Lista ordinata"
+        source: "Mostra HTML"
+        underline: "Sottolineato"
+        outdent: "Riduci indentazione"
+        indent: "Aumenta indentazione"
+
+      block_style: "Formato"
+      blocks:
+        h1: "Intestazione 1"
+        h2: "Intestazione 2"
+        h3: "Intestazione 3"
+        h4: "Intestazione 4"
+        h5: "Intestazione 5"
+        h6: "Intestazione 6"
+        p: "Paragrafo"
+
+      link_url: "URL"
+      image_src: "URL Immagine"
+      image_alignment: "Allineamento"
+      alignments:
+        none: "Nessuno"
+        left: "Sinistra"
+        right: "Destra"
+        center: "Centrale"
+      ok: "Salva"
+      cancel: "Annulla"

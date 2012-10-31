@@ -1,21 +1,26 @@
+#= require activeadmin-wysihtml5/wysihtml5.min
+#= require activeadmin-wysihtml5/parser_rules
+#= require activeadmin-wysihtml5/fileuploader
+#= require activeadmin-wysihtml5/jquery.paginate.min
+
 (($) ->
-  $.fn.active_admin_editor = (options) ->
+  $.fn.activeadmin_wysihtml5 = (options) ->
     this.each ->
-      active_admin_editor = $(this)
-      textarea_id = active_admin_editor.find('textarea').attr('id')
-      toolbar_id  = active_admin_editor.find('.active_admin_editor_toolbar').attr('id')
+      activeadmin_wysihtml5 = $(this)
+      textarea_id = activeadmin_wysihtml5.find('textarea').attr('id')
+      toolbar_id  = activeadmin_wysihtml5.find('.toolbar').attr('id')
 
       editor = new wysihtml5.Editor(textarea_id, {
         toolbar: toolbar_id,
-        stylesheets: "/assets/active_admin/editor/wysiwyg.css",
+        stylesheets: "/assets/activeadmin-wysihtml5/wysiwyg.css",
         parserRules: wysihtml5ParserRules
       })
 
-      image_dialog = active_admin_editor.find('[data-wysihtml5-dialog="insertImage"]')
+      image_dialog = activeadmin_wysihtml5.find('[data-wysihtml5-dialog="insertImage"]')
 
       # Clears and hides the asset container
       clear_assets = ->
-        active_admin_editor.find('#asset_uploader').hide()
+        activeadmin_wysihtml5.find('#asset_uploader').hide()
         image_dialog.find('.assets_container').html('').hide()
         image_dialog.find('.asset_scale_selection').hide()
 
@@ -29,7 +34,7 @@
           f = image_dialog.find("[data-wysihtml5-dialog-field='#{field}']")
           f.val(val)
 
-        active_admin_editor.find('#asset_uploader').show()
+        activeadmin_wysihtml5.find('#asset_uploader').show()
         $.getJSON '/admin/assets.json', (data) ->
           list = $('<ul class="page_content"></ul>')
 
@@ -101,5 +106,6 @@
           clear_assets()
           load_assets() if image_input.val() == 'http://'
 
-  $ -> $('.active_admin_editor').active_admin_editor()
+  $ -> $('.activeadmin-wysihtml5').activeadmin_wysihtml5()
 )(jQuery)
+
