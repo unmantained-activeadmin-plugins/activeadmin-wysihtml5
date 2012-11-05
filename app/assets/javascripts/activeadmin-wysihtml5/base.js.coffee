@@ -73,6 +73,8 @@
               when "modal-link-url"
                 href: $content.find("[name=url]").val()
                 text: $content.find("[name=text]").val()
+                rel: $content.find("[name=rel]").val()
+                title: $content.find("[name=title]").val()
                 target: (if $content.find("[name=blank]").is(":checked") then "_blank" else "")
               when "modal-link-email"
                 href: "mailto:" + $content.find("[name=email]").val()

@@ -33,6 +33,8 @@ it:
           anchor_title: "Ancora"
           url: "Indirizzo (URL):"
           text: "Testo:"
+          rel: "Campo \"rel\":"
+          title: "Campo \"title\":"
           email: "Email:"
           anchor: "Nome ancora:"
           blank: "Il link deve puntare ad una nuova pagina/tab del browser"
