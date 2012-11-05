@@ -2,6 +2,10 @@
 
 ![activeadmin-wysihtml5 screenshot](https://raw.github.com/stefanoverna/activeadmin-wysihtml5/master/screenshot.png)
 
+![activeadmin-wysihtml5 screenshot](https://raw.github.com/stefanoverna/activeadmin-wysihtml5/master/link_screenshot.png)
+
+![activeadmin-wysihtml5 screenshot](https://raw.github.com/stefanoverna/activeadmin-wysihtml5/master/image_screenshot.png)
+
 This is a wysiyg html editor for the [Active Admin](http://activeadmin.info/)
 interface using [wysihtml5](https://github.com/xing/wysihtml5).
 
