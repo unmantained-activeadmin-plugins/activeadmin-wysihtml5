@@ -187,13 +187,9 @@ var wysihtml5ParserRules = {
         "img": {
             "check_attributes": {
                 "width": "numbers",
-                "alt": "alt",
-                "src": "url", // if you compiled master manually then change this from 'url' to 'src'
                 "height": "numbers"
             },
-            "add_class": {
-                "align": "align_img"
-            }
+            "allow_attributes": [ "alt", "title", "src", "class" ]
         },
         "rb": {
             "rename_tag": "span"

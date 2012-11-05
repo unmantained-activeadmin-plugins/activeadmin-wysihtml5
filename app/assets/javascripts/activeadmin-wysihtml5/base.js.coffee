@@ -13,7 +13,6 @@
     @each ->
       $content = $(@).appendTo("body")
       $overlay.show()
-
       height = $content.outerHeight()
       width = $content.outerWidth()
 
@@ -22,8 +21,7 @@
         position: 'fixed'
         zIndex: 1200
         left: '50%'
-        top: '50%'
-        marginTop: - height * 0.5
+        top: 140
         marginLeft: - width * 0.5
       ).show()
 
@@ -43,31 +41,27 @@
         parserRules: wysihtml5ParserRules
       })
 
-      manageSource = ->
-        $changeViewSelector = $toolbar.find("a[data-wysihtml5-action='change_view']")
-        $changeViewSelector.click ->
-          toolbar.find('a').not($changeViewSelector).toggleClass('disabled')
-          $textarea.toggleClass('source')
-
-      manageLinks = ->
-        $button = $toolbar.find('a[data-wysihtml5-command=createLink]')
-
-        $button.click ->
-          activeButton = $(this).hasClass("wysihtml5-command-active")
-          $modal = $editor.find(".modal-link")
+      $button = $toolbar.find('a[data-wysihtml5-command=createLink]').click ->
+          $modal = $editor.find(".modal-link").clone()
           $field = $modal.find("input")
-          $ok = $modal.find("[data-action=save]")
-
           $tab_contents = $modal.find("[data-tab]").hide()
-
           $tab_handles = $modal.find("[data-tab-handle]").click ->
             $tab_contents.hide()
-            $($(@).attr("href")).show()
+            $tab_contents.filter($(@).attr("href")).show()
             $tab_handles.removeClass("active")
             $(@).addClass("active")
             false
 
-          $ok.click ->
+          activeButton = $(this).hasClass("wysihtml5-command-active")
+          if !activeButton
+            $modal.modal()
+            $tab_contents.find("[name=text]").val(editor.composer.selection.getText())
+            $tab_handles.eq(0).click()
+            false
+          else
+            true
+
+          $modal.find("[data-action=save]").click ->
             $content = $tab_contents.filter(":visible")
             el = switch $content.attr("id")
               when "modal-link-url"
@@ -86,106 +80,76 @@
             editor.currentView.element.focus()
             editor.composer.commands.exec("createLink", el)
 
-          if !activeButton
-            $modal.modal()
-            $tab_contents.find("[name=text]").val(editor.composer.selection.getText())
-            $tab_handles.eq(0).click()
-            false
-          else
-            true
+      $toolbar.find('a[data-wysihtml5-command=insertImage]').click ->
+        $modal = $editor.find(".modal-image").clone()
+        $uploader = $modal.find('.asset-uploader')
+        $gallery = $modal.find('.assets-container ul')
+        $url = $modal.find('[name=url]')
+        $scaler = $modal.find('.input.radio')
+        selectedAsset = null
+        $tab_contents = $modal.find("[data-tab]").hide()
+        $tab_handles = $modal.find("[data-tab-handle]").click ->
+          $tab_contents.hide()
+          $tab_contents.filter($(@).attr("href")).show()
+          $tab_handles.removeClass("active")
+          $(@).addClass("active")
+          false
 
-      manageLinks()
+        refreshAssets = ->
+          $gallery.empty()
 
-      # imageDialog = activeadminWysihtml5.find('[data-wysihtml5-dialog="insertImage"]')
+          $.getJSON '/admin/assets.json', (data) ->
+            $.each data, (i, asset) ->
+              $img = $("<img/>")
+              $img.attr
+                title: "#{asset.dimensions.width}x#{asset.dimensions.height}px"
+                src: asset.thumb_url
+              $a = $("<a/>").attr(href: "#").append($img)
+              $a.click ->
+                $gallery.find("a").removeClass("selected")
+                $a.addClass("selected")
+                selectedAsset = asset
+                false
+              $gallery.append($("<li/>").append($a))
 
-      # # Clears and hides the asset container
-      # clearAssets = ->
-      #   activeadminWysihtml5.find('#assetUploader').hide()
-      #   imageDialog.find('.assetsContainer').html('').hide()
-      #   imageDialog.find('.assetScaleSelection').hide()
+        initUploader = ->
+          uploader = new qq.FileUploader
+            element: $uploader.get(0)
+            action: '/admin/assets.json'
+            onComplete: ->
+              refreshAssets()
+              $tab_handles.eq(1).click()
 
-      # # Will re-load and re-render the assets
-      # loadAssets = (done=null) ->
-      #   container    = imageDialog.find('.assetsContainer')
-      #   saveButton  = imageDialog.find('a[data-wysihtml5-dialog-action="save"]')
+        $modal.find('[data-action=save]').click ->
+          $content = $tab_contents.filter(":visible")
+          el = switch $content.attr("id")
+            when "modal-image-url"
+              src: $content.find("[name=url]").val()
+              class: $content.find("[name=alignment]").val()
+              alt: $content.find("[name=alt]").val()
+              title: $content.find("[name=title]").val()
+            when "modal-image-gallery"
+              scale = $content.find("[name=scale]").val()
+              src: selectedAsset.source_url[scale]
+              class: $content.find("[name=alignment]").val()
+              title: $content.find("[name=title]").val()
+              alt: $content.find("[name=alt]").val()
 
-      #   # Helper method for setting an input field within the dialog
-      #   setDialogInput = (field, val) ->
-      #     f = imageDialog.find("[data-wysihtml5-dialog-field='#{field}']")
-      #     f.val(val)
+          if el
+            editor.currentView.element.focus()
+            editor.composer.commands.exec("insertImage", el)
 
-      #   activeadminWysihtml5.find('#assetUploader').show()
-      #   $.getJSON '/admin/assets.json', (data) ->
-      #     list = $('<ul class="pageContent"></ul>')
-
-      #     $.each data, (i, asset) ->
-      #       tag = $("""
-      #       <li class="asset">
-      #         <img data-image-width="#{asset.dimensions.width}"
-      #           data-image-height="#{asset.dimensions.height}"
-      #           title="#{asset.dimensions.width}px x #{asset.dimensions.height}px"
-      #           src="#{asset.thumbUrl}" />
-      #       </li>
-      #       """)
-      #       tag.find('img').data('image-src', asset.sourceUrl)
-      #       list.append(tag)
-
-      #     container.append(list).show()
-      #     container.append($('<div class="pageNavigation"></div>'))
-      #     container.paginate
-      #       itemsPerPage: 10
-      #       showFirst: false
-      #       showLast: false
-
-      #     imageDialog.find('.assetScaleSelection').show()
-
-      #     selectedScale = ->
-      #       imageDialog.find('input[name="assetScale"]:checked').data('scale')
-
-      #     populateSrc = (el) ->
-      #       scale = selectedScale()
-      #       container.find('.asset').removeClass('active')
-      #       src = $(el).data('image-src')[scale]
-      #       setDialogInput 'src', src
-      #       $(el).parent().addClass('active')
-
-      #     imageDialog.find('input[name="assetScale"]').click (e) ->
-      #       populateSrc(imageDialog.find('.asset.active img')[0])
-
-      #     container.find('img').
-      #       click((e) ->
-      #         populateSrc(this)
-      #       ).
-      #       dblclick((e) ->
-      #         fireEvent = (element, event) ->
-      #           if (document.createEvent)
-      #             # dispatch for firefox + others
-      #             evt = document.createEvent("HTMLEvents")
-      #             evt.initEvent(event, true, true ); # event type,bubbling,cancelable
-      #             return !element.dispatchEvent(evt)
-      #           else
-      #             # dispatch for IE
-      #             evt = document.createEventObject()
-      #             return element.fireEvent('on'+event, evt)
-
-      #         fireEvent saveButton[0], 'click'
-      #       )
-      #   done() if done
-
-      # # HTML 5 Uploading
-      # uploader = new qq.FileUploader
-      #   element: document.getElementById('assetUploader'),
-      #   action: '/admin/assets.json'
-      #   onComplete: ->
-      #     clearAssets()
-      #     loadAssets()
-
-      editor.on 'show:dialog', (dialog) ->
-        imageInput = imageDialog.find('input[data-wysihtml5-dialog-field="src"]')
-        if dialog.command == 'insertImage'
-          clearAssets()
-          loadAssets() if imageInput.val() == 'http://'
+        activeButton = $(this).hasClass("wysihtml5-command-active")
+        if !activeButton
+          $modal.modal()
+          $tab_handles.eq(0).click()
+          refreshAssets()
+          initUploader()
+          false
+        else
+          true
 
   $ -> $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+
 )(jQuery)
 

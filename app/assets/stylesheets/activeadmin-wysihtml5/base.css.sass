@@ -57,7 +57,7 @@
       margin-bottom: 8px
 
       label
-        width: 80px
+        width: 100px
         display: inline-block
         margin-right: 5px
         font-weight: bold
@@ -69,7 +69,7 @@
         border: 1px solid #ccc
         +border-radius(2px)
         font-size: 13px
-        width: 400px
+        width: 350px
         margin: 0
 
       &.boolean
@@ -77,6 +77,63 @@
 
         label
           width: 400px
+
+      &.radio
+        label.option
+          width: auto
+          margin-right: 15px
+
+    .optional-inputs
+      margin-top: 15px
+      padding: 15px
+      background-color: #F1F1F1
+      +border-radius(2px)
+      +box-shadow(0 1px 1px rgba(black, 0.2) inset)
+
+    .assets-container
+      ul
+        max-height: 300px
+        overflow: auto
+        margin: 0
+        padding: 0
+
+        li
+          float: left
+          margin: 5px
+          list-style-type: none
+
+          a
+            border: 1px solid transparent
+            padding: 2px
+            display: block
+
+            &.selected
+              background-color: red
+              border-color: #ccc
+
+            img
+              display: block
+
+    .asset-uploader
+
+      .qq-uploader
+        text-align: center
+        padding: 15px 0
+
+      .qq-upload-drop-area
+        border: 2px dashed #ccc
+        height: 50px
+        line-height: 50px
+        color: #777
+        font-size: 16px
+        text-align: center
+        margin-bottom: 15px
+
+      .qq-upload-button
+        +dark-button
+
+      .qq-upload-list
+        display: none
 
   .modal-footer
     border-top: 1px solid #ccc

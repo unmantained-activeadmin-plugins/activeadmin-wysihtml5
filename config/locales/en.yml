@@ -25,6 +25,19 @@ en:
       dialog:
         cancel: "Cancel"
         ok: "OK"
+        image:
+          dialog_title: "Insert a new image"
+          url_title: "External image"
+          gallery_title: "Gallery"
+          upload_title: "Upload"
+          url: "URL:"
+          alignment: "Alignment:"
+          default: "None"
+          left: "Left"
+          right: "Right"
+          scale: "Scale:"
+          alt: "Alternate text:"
+          title: "<code>title</code> field:"
         link:
           dialog_title: "Insert a new link"
           url_title: "URL"

@@ -183,49 +183,77 @@ module Formtastic
             <a data-modal="close" data-action="save" class="button primary">#{I18n.t("wysihtml5.dialog.ok")}</a>
           </div>
         </div>
-
-        <div data-wysihtml5-dialog="insertImage" style="display: none">
-          <div id="asset_uploader">
-            <noscript>
-              <a href="/admin/assets/new">Upload &raquo;</a>
-            </noscript>
+        <div class="activeadmin-wysihtml5-modal modal-image">
+          <div class="modal-title">
+            #{I18n.t("wysihtml5.dialog.image.dialog_title")}
           </div>
-          <label>
-            Image:
-            <input data-wysihtml5-dialog-field="src" value="http://" />
-          </label>
-          <div class="assets_container">
+          <div class="modal-content">
+            <ul class="tabs">
+              <li><a data-tab-handle="1" href="#modal-image-url">#{I18n.t("wysihtml5.dialog.image.url_title")}</a></li>
+              <li><a data-tab-handle="1" href="#modal-image-gallery">#{I18n.t("wysihtml5.dialog.image.gallery_title")}</a></li>
+              <li><a data-tab-handle="1" href="#modal-image-upload">#{I18n.t("wysihtml5.dialog.image.upload_title")}</a></li>
+            </ul>
+            <div data-tab="1" id="modal-image-url">
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.image.url")}</label>
+                <input type="text" name="url" placeholder="http://" />
+              </div>
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.image.alt")}</label>
+                <input type="text" name="alt" />
+              </div>
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.image.title")}</label>
+                <input type="text" name="title" />
+              </div>
+              <div class="input select">
+                <label>#{I18n.t("wysihtml5.dialog.image.alignment")}</label>
+                <select name="alignment">
+                  <option value="">#{I18n.t("wysihtml5.dialog.image.default")}</option>
+                  <option value="wysiwyg-float-left">#{I18n.t("wysihtml5.dialog.image.left")}</option>
+                  <option value="wysiwyg-float-right">#{I18n.t("wysihtml5.dialog.image.right")}</option>
+                </select>
+              </div>
+            </div>
+            <div data-tab="1" id="modal-image-upload">
+              <div class="asset-uploader"></div>
+            </div>
+            <div data-tab="1" id="modal-image-gallery">
+              <div class="assets-container">
+                <ul></ul>
+              </div>
+              <div class="optional-inputs">
+                <div class="input string">
+                  <label>#{I18n.t("wysihtml5.dialog.image.alt")}</label>
+                  <input type="text" name="alt" />
+                </div>
+                <div class="input string">
+                  <label>#{I18n.t("wysihtml5.dialog.image.title")}</label>
+                  <input type="text" name="title" />
+                </div>
+                <div class="input radio">
+                  <div class="asset_scale_selection">
+                    <label>#{I18n.t("wysihtml5.dialog.image.scale")}</label>
+                    <label class="option"><input value="full" type="radio" name="scale" checked="checked" /> 100%</label>
+                    <label class="option"><input value="three_quarters" type="radio" name="scale" /> 75%</label>
+                    <label class="option"><input value="half" type="radio" name="scale" /> 50%</label>
+                    <label class="option"><input value="one_quarter" type="radio" name="scale" /> 25%</label>
+                  </div>
+                </div>
+                <div class="input select">
+                  <label>#{I18n.t("wysihtml5.dialog.image.alignment")}</label>
+                  <select name="alignment">
+                    <option value="">default</option>
+                    <option value="wysiwyg-float-left">#{I18n.t("wysihtml5.dialog.image.left")}</option>
+                    <option value="wysiwyg-float-right">#{I18n.t("wysihtml5.dialog.image.right")}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="asset_scale_selection">
-            <label>Scale:</label>
-            <label>
-              100%
-              <input data-scale="full" type="radio" name="asset_scale" checked="checked" />
-            </label>
-            <label>
-              75%
-              <input data-scale="three_quarters" type="radio" name="asset_scale" />
-            </label>
-            <label>
-              50%
-              <input data-scale="half" type="radio" name="asset_scale" />
-            </label>
-            <label>
-              25%
-              <input data-scale="one_quarter" type="radio" name="asset_scale" />
-            </label>
-          </div>
-          <label>
-            Align:
-            <select data-wysihtml5-dialog-field="className">
-              <option value="">default</option>
-              <option value="wysiwyg-float-left">left</option>
-              <option value="wysiwyg-float-right">right</option>
-            </select>
-          </label>
-          <div class="action-group">
-            <a data-wysihtml5-dialog-action="save" class="button">OK</a>
-            <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+          <div class="modal-footer">
+            <a data-modal="close" data-action="cancel" class="button">#{I18n.t("wysihtml5.dialog.cancel")}</a>
+            <a data-modal="close" data-action="save" class="button primary">#{I18n.t("wysihtml5.dialog.ok")}</a>
           </div>
         </div>
         HTML
