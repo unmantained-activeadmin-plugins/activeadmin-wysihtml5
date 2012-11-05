@@ -1,368 +1,479 @@
 @import 'active_admin/mixins'
 @import 'activeadmin-wysihtml5/icons'
 
+#modal-overlay
+  position: fixed
+  z-index: 1000
+  top: 0px
+  left: 0px
+  height: 100%
+  width: 100%
+  background: #000
+  display: none
+  opacity: 0.6
+
+.activeadmin-wysihtml5-modal
+  background-color: white
+  width: 550px
+  +border-radius(5px)
+  +box-shadow(0 4px 8px rgba(black, 0.5))
+  display: none
+
+  .modal-title
+    border-bottom: 1px solid #ccc
+    background-color: #F1F1F1
+    padding: 10px 15px
+    font-weight: bold
+    font-size: 110%
+    +border-top-radius(5px)
+
+  .modal-content
+    padding: 20px
+
+    .tabs
+      margin: 0
+      padding: 0
+      margin-bottom: 15px
+
+      li
+        display: inline-block
+        list-style-type: none
+
+        a
+          background-color: #F1F1F1
+          +border-radius(6px)
+          +box-shadow(0 2px 2px rgba(black, 0.3))
+          padding: 2px 11px
+          display: inline-block
+          margin-right: 6px
+          text-decoration: none
+          color: #333
+          font-weight: bold
+
+          &.active
+            +box-shadow(0 2px 2px rgba(black, 0.3) inset)
+
+    .input
+      margin-bottom: 8px
+
+      label
+        width: 80px
+        display: inline-block
+        margin-right: 5px
+        font-weight: bold
+        color: #444
+
+      input[type="text"]
+        padding: 4px
+        display: inline-block
+        border: 1px solid #ccc
+        +border-radius(2px)
+        font-size: 13px
+        width: 400px
+        margin: 0
+
+      &.boolean
+        padding-left: 85px
+
+        label
+          width: 400px
+
+  .modal-footer
+    border-top: 1px solid #ccc
+    background-color: #F1F1F1
+    padding: 10px 15px
+    text-align: right
+    +border-bottom-radius(5px)
+
+    .button
+      +light-button
+
+      &.primary
+        +dark-button
+
 =toolbar-icon($icon)
   margin-top: 2px
   +icon($icon)
 
-body.active_admin form .activeadmin-wysihtml5
-  +nested-reset
-  width: 76%
-  float: left
+body.active_admin form
+  .input.wysihtml5
+    +clearfix
 
-  &> textarea
-    font-size: 13px
-    line-height: 17px
-    width: 100%
+  .activeadmin-wysihtml5
+    +nested-reset
+    width: 76%
+    float: left
 
-  &> ul.toolbar
-    position: relative
-    margin-bottom: 5px
+    &> textarea
+      font-size: 13px
+      line-height: 17px
+      width: 100%
 
-    &> li
-      display: inline-block
-      padding-right: 5px
+      &.source
+        font-family: Pragmata, Menlo, 'DejaVu LGC Sans Mono', 'DejaVu Sans Mono', Consolas, 'Everson Mono', 'Lucida Console', 'Andale Mono', 'Nimbus Mono L', 'Liberation Mono', FreeMono, 'Osaka Monospaced', Courier, 'New Courier', monospace
 
-      &> a,
-      &> .blocks-selector
-        +linear-gradient(white, #E6E6E6)
-        padding: 4px 10px
+    &> ul.toolbar
+      position: relative
+      margin-bottom: 5px
+
+      &> li
         display: inline-block
-        line-height: 18px
-        color: #333
-        text-shadow: 0 1px 1px rgba(white, 0.75)
-        vertical-align: middle
-        border: 1px solid #CCC
-        border-bottom-color: #B3B3B3
-        border-left-width: 0
-        text-decoration: none
-        position: relative
+        padding-right: 5px
 
-        &.wysihtml5-command-active
-          +linear-gradient(darken(#E6E6E6, 10%), #E6E6E6)
-          +box-shadow(inset 0 1px 2px rgba(black, 0.4))
-
-        &:hover
-          background: #E6E6E6
-
-        &:first-child
-          border-left-width: 1px
-          +border-left-radius(2px)
-
-        &:last-child
-          +border-right-radius(2px)
-
-        &.bold
-          font-weight: bold
-
-        &.italic
-          font-style: italic
-
-        &.underline
-          text-decoration: underline
-
-        &.ul span
-          +toolbar-icon(th-list)
-
-        &.ol span
-          +toolbar-icon(list)
-
-        &.outdent span
-          margin-top: 2px
-          +toolbar-icon(indent-right)
-
-        &.indent span
-          +toolbar-icon(indent-left)
-
-        &.image span
-          +toolbar-icon(picture)
-
-        &.link span
-          +toolbar-icon(share)
-
-        &.source span
-          +toolbar-icon(file)
-
-      &>.blocks-selector
-        position: relative
-
-        span
+        &> a,
+        &> .blocks-selector
+          +linear-gradient(white, #E6E6E6)
+          padding: 4px 10px
           display: inline-block
-          padding-left: 16px
-          padding-right: 9px
+          line-height: 18px
+          color: #333
+          text-shadow: 0 1px 1px rgba(white, 0.75)
+          vertical-align: middle
+          border: 1px solid #CCC
+          border-bottom-color: #B3B3B3
+          border-left-width: 0
+          text-decoration: none
           position: relative
 
-          &:before
-            content: ""
-            position: absolute
-            left: -2px
-            top: 2px
-            +icon(font)
-          &:after
-            content: ""
-            position: absolute
-            top: 8px
-            right: -2px
-            border-bottom: 4px solid transparent
-            border-left: 4px solid transparent
-            border-top: 4px solid #000000
-            border-right: 4px solid transparent
+          &.wysihtml5-command-active, &.wysihtml5-action-active
+            +linear-gradient(darken(#E6E6E6, 10%), #E6E6E6)
+            +box-shadow(inset 0 1px 2px rgba(black, 0.4))
+
+          &:hover
+            background: #E6E6E6
+
+          &:first-child
+            border-left-width: 1px
+            +border-left-radius(2px)
+
+          &:last-child
+            +border-right-radius(2px)
+
+          &.bold
+            font-weight: bold
+
+          &.italic
+            font-style: italic
+
+          &.underline
+            text-decoration: underline
+
+          &.ul span
+            +toolbar-icon(th-list)
+
+          &.ol span
+            +toolbar-icon(list)
+
+          &.outdent span
+            margin-top: 2px
+            +toolbar-icon(indent-right)
+
+          &.indent span
+            +toolbar-icon(indent-left)
+
+          &.image span
+            +aside-icon(picture)
+
+          &.link span
+            +aside-icon(share)
+
+          &.source span
+            +aside-icon(file)
+
+        &>.blocks-selector
+          position: relative
+
+          span
             display: inline-block
-            height: 0
-            vertical-align: top
+            padding-left: 16px
+            padding-right: 9px
+            position: relative
 
-        ul
-          display: none
-          position: absolute
-          z-index: 2
-          top: 28px
-          left: 0px
-          width: 140px
-          background: white
-          +box-shadow(0 2px 5px rgba(black, 0.5))
-          padding: 10px 0
+            &:before
+              content: ""
+              position: absolute
+              left: -2px
+              top: 2px
+              +icon(font)
+            &:after
+              content: ""
+              position: absolute
+              top: 8px
+              right: -2px
+              border-bottom: 4px solid transparent
+              border-left: 4px solid transparent
+              border-top: 4px solid #000000
+              border-right: 4px solid transparent
+              display: inline-block
+              height: 0
+              vertical-align: top
 
-          li a
-            padding: 3px 15px
+          ul
+            display: none
+            position: absolute
+            z-index: 2
+            top: 28px
+            left: 0px
+            width: 140px
+            background: white
+            +box-shadow(0 2px 5px rgba(black, 0.5))
+            padding: 10px 0
+
+            li a
+              padding: 3px 15px
+              display: block
+              text-decoration: none
+              color: #333
+              text-shadow: none
+
+              &:hover
+                background-color: $link-color
+                color: white
+
+          &:hover ul
             display: block
-            text-decoration: none
-            color: #333
-            text-shadow: none
+
+      &.wysihtml5-commands-disabled
+        &> li
+          &> a,
+          &> .blocks-selector
+            background: #E6E6E6 !important
+            color: #777
 
             &:hover
-              background-color: $link-color
-              color: white
+              background: #E6E6E6 !important
+              color: #777 !important
 
-        &:hover ul
-          display: block
+          &> .blocks-selector:hover ul
+            display: none !important
 
-      // .blocks-selector
-      //   position: relative
+        // .blocks-selector
+        //   position: relative
 
-      // ul
+        // ul
 
-      // li
-      //   a
-      //   display: block
-      //   text-decoration: none
-      //   padding: 5px 10px
-      //   margin-bottom: 2px
-      //   color: #444
+        // li
+        //   a
+        //   display: block
+        //   text-decoration: none
+        //   padding: 5px 10px
+        //   margin-bottom: 2px
+        //   color: #444
 
-      //   &:hover
-      //     background-color: #eee
+        //   &:hover
+        //     background-color: #eee
 
-      //   &.wysihtml5-command-active
-      //     font-weight: bold
+        //   &.wysihtml5-command-active
+        //     font-weight: bold
 
-      // &:hover ul
-      // display: block
+        // &:hover ul
+        // display: block
 
-    // &> [data-wysihtml5-command],
-    // &> [data-wysihtml5-action],
-    // .blocks-selector > span
-      // text-decoration: none
-      // background: #fff
-      // color: #000
-      // padding: 5px 8px
-      // margin: 0 2px 2px 0
-      // border: 1px solid #C9D0D6
-      // display: inline-block
+      // &> [data-wysihtml5-command],
+      // &> [data-wysihtml5-action],
+      // .blocks-selector > span
+        // text-decoration: none
+        // background: #fff
+        // color: #000
+        // padding: 5px 8px
+        // margin: 0 2px 2px 0
+        // border: 1px solid #C9D0D6
+        // display: inline-block
 
-      // &.wysihtml5-command-active
-      // @include gradient(#eee, #f9f9f9)
+        // &.wysihtml5-command-active
+        // @include gradient(#eee, #f9f9f9)
 
-    // &.wysihtml5-commands-disabled [data-wysihtml5-command]
-      // opacity: 0.5
+      // &.wysihtml5-commands-disabled [data-wysihtml5-command]
+        // opacity: 0.5
 
-    // &.wysihtml5-commands-disabled [data-wysihtml5-action="change_view"]
-      // @include gradient(#eee, #f9f9f9)
+      // &.wysihtml5-commands-disabled [data-wysihtml5-action="change_view"]
+        // @include gradient(#eee, #f9f9f9)
 
-    // [data-wysihtml5-command="bold"]
-      // font-weight: bold
+      // [data-wysihtml5-command="bold"]
+        // font-weight: bold
 
-    // [data-wysihtml5-command="italic"]
-      // font-style: italic
+      // [data-wysihtml5-command="italic"]
+        // font-style: italic
 
-    // [data-wysihtml5-command="createLink"] span
-      // border-bottom: 1px solid #38678B
+      // [data-wysihtml5-command="createLink"] span
+        // border-bottom: 1px solid #38678B
 
-    // [data-wysihtml5-dialog]
-      // position: absolute
-      // top: 35px
-      // left: 10px
-      // width: 600px
-      // background: #fff
-      // padding: 20px
-      // border: 1px solid #c9d0d6
+      // [data-wysihtml5-dialog]
+        // position: absolute
+        // top: 35px
+        // left: 10px
+        // width: 600px
+        // background: #fff
+        // padding: 20px
+        // border: 1px solid #c9d0d6
 
-      // -moz-border-radius: 3px
-      // -webkit-border-radius: 3px
-      // border-radius: 3px
-      // -moz-box-shadow: 0 0 5px #ccc
-      // -webkit-box-shadow: 0 0 5px #ccc
-      // box-shadow: 0 0 5px #ccc
+        // -moz-border-radius: 3px
+        // -webkit-border-radius: 3px
+        // border-radius: 3px
+        // -moz-box-shadow: 0 0 5px #ccc
+        // -webkit-box-shadow: 0 0 5px #ccc
+        // box-shadow: 0 0 5px #ccc
 
-      // label
-      //   display: block
-      //   margin: 10px 0
+        // label
+        //   display: block
+        //   margin: 10px 0
 
-      //   & + label
-      //     clear: both
+        //   & + label
+        //     clear: both
 
-      // input
-      //   width: 400px
-      //   border: 1px solid #c9d0d6
-      //   -webkit-border-radius: 3px
-      //   -moz-border-radius: 3px
-      //   border-radius: 3px
-      //   font-size: 0.95em
-      //   font-family: Helvetica, Arial, sans-serif
-      //   outline: none
-      //   padding: 8px 10px 7px
+        // input
+        //   width: 400px
+        //   border: 1px solid #c9d0d6
+        //   -webkit-border-radius: 3px
+        //   -moz-border-radius: 3px
+        //   border-radius: 3px
+        //   font-size: 0.95em
+        //   font-family: Helvetica, Arial, sans-serif
+        //   outline: none
+        //   padding: 8px 10px 7px
 
-      // .asset_scale_selection
-      //   clear: both
-      //   @include clearfix
+        // .asset_scale_selection
+        //   clear: both
+        //   @include clearfix
 
-      //   label
-      //   clear: none
-      //   display: block
-      //   float: left
-      //   width: auto
-      //   margin-right: 20px
+        //   label
+        //   clear: none
+        //   display: block
+        //   float: left
+        //   width: auto
+        //   margin-right: 20px
 
-      //   input
-      //     width: auto
+        //   input
+        //     width: auto
 
-      //   & + label
-      //   clear: both
+        //   & + label
+        //   clear: both
 
-      // #asset_uploader
-      //   margin-top: 27px
-      //   float: right
+        // #asset_uploader
+        //   margin-top: 27px
+        //   float: right
 
-      // .assets_container
-      //   clear: both
-      //   @include clearfix
-      //   margin: 10px 0
-      //   padding: 20px 0
+        // .assets_container
+        //   clear: both
+        //   @include clearfix
+        //   margin: 10px 0
+        //   padding: 20px 0
 
-      //   .asset
-      //   float: left
-      //   margin: 5px
-      //   line-height: 0
-      //   width: 110px
-      //   height: 126px
-      //   text-align: center
+        //   .asset
+        //   float: left
+        //   margin: 5px
+        //   line-height: 0
+        //   width: 110px
+        //   height: 126px
+        //   text-align: center
 
-      //   &.active
-      //     img
-      //     border-color: #999
+        //   &.active
+        //     img
+        //     border-color: #999
 
-      //   img
-      //     cursor: pointer
-      //     border: 3px solid #ddd
+        //   img
+        //     cursor: pointer
+        //     border: 3px solid #ddd
 
-      //   a.upload
-      //   display: block
-      //   float: right
-      //   margin-right: 20px
+        //   a.upload
+        //   display: block
+        //   float: right
+        //   margin-right: 20px
 
-      //   .page_navigation
-      //   clear: both
-      //   float: right
+        //   .page_navigation
+        //   clear: both
+        //   float: right
 
-      //   & > span
-      //     display: inline-block
-      //     margin: 0 3px
+        //   & > span
+        //     display: inline-block
+        //     margin: 0 3px
 
-      //     &.active
-      //     font-weight: bold
+        //     &.active
+        //     font-weight: bold
 
-      // .action-group
-      //   padding-top: 20px
-      //   clear: both
+        // .action-group
+        //   padding-top: 20px
+        //   clear: both
 
-      // [data-wysihtml5-dialog-action]
-      //   cursor: pointer
+        // [data-wysihtml5-dialog-action]
+        //   cursor: pointer
 
-    // .button.quicksave
-      // float: right
-      // margin-top: -5px
-      // margin-right: -20px
-      // position: relative
-      // top: -5px
+      // .button.quicksave
+        // float: right
+        // margin-top: -5px
+        // margin-right: -20px
+        // position: relative
+        // top: -5px
 
-// .qq-uploader
-  // position: relative
-  // width: 100%
-  // clear: both
+  // .qq-uploader
+    // position: relative
+    // width: 100%
+    // clear: both
 
-// .qq-upload-button
-  // display: block
-  // width: 105px
-  // padding: 7px 0
-  // text-align: center
-  // background: #880000
-  // border-bottom: 1px solid #ddd
-  // color: #fff
+  // .qq-upload-button
+    // display: block
+    // width: 105px
+    // padding: 7px 0
+    // text-align: center
+    // background: #880000
+    // border-bottom: 1px solid #ddd
+    // color: #fff
 
-// .qq-upload-button-hover
-  // background: #cc0000
-// .qq-upload-button-focus
-  // outline: 1px dotted black
+  // .qq-upload-button-hover
+    // background: #cc0000
+  // .qq-upload-button-focus
+    // outline: 1px dotted black
 
-// .qq-upload-drop-area
-  // position: absolute
-  // top: 0
-  // left: 0
-  // width: 100%
-  // height: 100%
-  // min-height: 70px
-  // z-index: 2
-  // background: #FF9797
-  // text-align: center
+  // .qq-upload-drop-area
+    // position: absolute
+    // top: 0
+    // left: 0
+    // width: 100%
+    // height: 100%
+    // min-height: 70px
+    // z-index: 2
+    // background: #FF9797
+    // text-align: center
 
-// .qq-upload-drop-area span
-  // display: block
-  // position: absolute
-  // top: 50%
-  // width: 100%
-  // margin-top: -8px
-  // font-size: 16px
+  // .qq-upload-drop-area span
+    // display: block
+    // position: absolute
+    // top: 50%
+    // width: 100%
+    // margin-top: -8px
+    // font-size: 16px
 
-// .qq-upload-drop-area-active
-  // background: #FF7171
+  // .qq-upload-drop-area-active
+    // background: #FF7171
 
-// .qq-upload-list
-  // display: none
-  // margin: 15px 35px
-  // padding: 0
-  // list-style: disc
+  // .qq-upload-list
+    // display: none
+    // margin: 15px 35px
+    // padding: 0
+    // list-style: disc
 
-// .qq-upload-list li
-  // margin: 0
-  // padding: 0
-  // line-height: 15px
-  // font-size: 12px
+  // .qq-upload-list li
+    // margin: 0
+    // padding: 0
+    // line-height: 15px
+    // font-size: 12px
 
-// .qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text
-  // margin-right: 7px
+  // .qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text
+    // margin-right: 7px
 
-// .qq-upload-file
-// .qq-upload-spinner
-  // display: inline-block
-  // background: url("loading.gif")
-  // width: 15px
-  // height: 15px
-  // vertical-align: text-bottom
+  // .qq-upload-file
+  // .qq-upload-spinner
+    // display: inline-block
+    // background: url("loading.gif")
+    // width: 15px
+    // height: 15px
+    // vertical-align: text-bottom
 
-// .qq-upload-size, .qq-upload-cancel
-  // font-size: 11px
+  // .qq-upload-size, .qq-upload-cancel
+    // font-size: 11px
 
-// .qq-upload-failed-text
-  // display: none
+  // .qq-upload-failed-text
+    // display: none
 
-// .qq-upload-fail .qq-upload-failed-text
-  // display: inline
+  // .qq-upload-fail .qq-upload-failed-text
+    // display: inline

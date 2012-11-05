@@ -1,18 +1,38 @@
 en:
-  wysihtml5:
-    bold: "Bold"
-    italic: "Italic"
-    link: "Link"
-    image: "Image"
-    unordered_list: "Unordered list"
-    ordered_list: "Ordered list"
-    source: "Show HTML"
-    block_style: "Block style"
-    blocks:
-      h1: Heading 1
-      h2: Heading 2
-      h3: Heading 3
-      h4: Heading 4
-      h5: Heading 5
-      h6: Heading 6
-      p: Normal
+  formtastic:
+    wysihtml5:
+      command:
+        bold: "Bold"
+        italic: "Italic"
+        link: "Link"
+        image: "Image"
+        ul: "Unordered list"
+        ol: "Ordered list"
+        source: "Show HTML"
+        underline: "Underline"
+        outdent: "Outdent"
+        indent: "Indent"
+      block_style: "Block style"
+      blocks:
+        h1: "Heading 1"
+        h2: "Heading 2"
+        h3: "Heading 3"
+        h4: "Heading 4"
+        h5: "Heading 5"
+        h6: "Heading 6"
+        p: "Paragraph"
+
+      dialog:
+        cancel: "Cancel"
+        ok: "OK"
+        link:
+          title: "Insert a new link"
+          url_title: "URL"
+          email_title: "Email"
+          anchor_title: "Anchor"
+          url: "URL:"
+          text: "Text:"
+          email: "Email:"
+          anchor: "Anchor name:"
+          blank: "The link will open up a new page/tab"
+          your_text_here: "Your text here"

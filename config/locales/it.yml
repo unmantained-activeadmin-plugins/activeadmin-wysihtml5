@@ -23,13 +23,17 @@ it:
         h6: "Intestazione 6"
         p: "Paragrafo"
 
-      link_url: "URL"
-      image_src: "URL Immagine"
-      image_alignment: "Allineamento"
-      alignments:
-        none: "Nessuno"
-        left: "Sinistra"
-        right: "Destra"
-        center: "Centrale"
-      ok: "Salva"
-      cancel: "Annulla"
+      dialog:
+        cancel: "Annulla"
+        ok: "OK"
+        link:
+          title: "Inserisci nuovo link"
+          url_title: "URL"
+          email_title: "Indirizzo email"
+          anchor_title: "Ancora"
+          url: "Indirizzo (URL):"
+          text: "Testo:"
+          email: "Email:"
+          anchor: "Nome ancora:"
+          blank: "Il link deve puntare ad una nuova pagina/tab del browser"
+          your_text_here: "Il tuo testo"
