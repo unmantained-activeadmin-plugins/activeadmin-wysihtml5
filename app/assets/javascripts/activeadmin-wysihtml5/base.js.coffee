@@ -42,24 +42,21 @@
       })
 
       $button = $toolbar.find('a[data-wysihtml5-command=createLink]').click ->
-          $modal = $editor.find(".modal-link").clone()
-          $field = $modal.find("input")
-          $tab_contents = $modal.find("[data-tab]").hide()
-          $tab_handles = $modal.find("[data-tab-handle]").click ->
-            $tab_contents.hide()
-            $tab_contents.filter($(@).attr("href")).show()
-            $tab_handles.removeClass("active")
-            $(@).addClass("active")
-            false
+        $modal = $editor.find(".modal-link").clone()
+        $field = $modal.find("input")
+        $tab_contents = $modal.find("[data-tab]").hide()
+        $tab_handles = $modal.find("[data-tab-handle]").click ->
+          $tab_contents.hide()
+          $tab_contents.filter($(@).attr("href")).show()
+          $tab_handles.removeClass("active")
+          $(@).addClass("active")
+          false
 
-          activeButton = $(this).hasClass("wysihtml5-command-active")
-          if !activeButton
-            $modal.modal()
-            $tab_contents.find("[name=text]").val(editor.composer.selection.getText())
-            $tab_handles.eq(0).click()
-            false
-          else
-            true
+        activeButton = $(this).hasClass("wysihtml5-command-active")
+        if !activeButton
+          $modal.modal()
+          $tab_contents.find("[name=text]").val(editor.composer.selection.getText())
+          $tab_handles.eq(0).click()
 
           $modal.find("[data-action=save]").click ->
             $content = $tab_contents.filter(":visible")
@@ -79,6 +76,10 @@
 
             editor.currentView.element.focus()
             editor.composer.commands.exec("createLink", el)
+
+          false
+        else
+          true
 
       $toolbar.find('a[data-wysihtml5-command=insertImage]').click ->
         $modal = $editor.find(".modal-image").clone()
