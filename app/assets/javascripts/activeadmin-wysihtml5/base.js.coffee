@@ -32,6 +32,10 @@
   $.fn.activeAdminWysihtml5 = (options) ->
     this.each ->
       $editor = $(this)
+      return if $editor.data('activeadmin-wysihtml5')
+
+      $editor.data('activeadmin-wysihtml5', true)
+
       $toolbar = $editor.find('.toolbar')
       $textarea = $editor.find('textarea')
 
@@ -130,7 +134,7 @@
               alt: $content.find("[name=alt]").val()
               title: $content.find("[name=title]").val()
             when "modal-image-gallery"
-              scale = $content.find("[name=scale]").val()
+              scale = $content.find("[name=scale]:checked").val()
               src: selectedAsset.source_url[scale]
               class: $content.find("[name=alignment]").val()
               title: $content.find("[name=title]").val()
@@ -150,7 +154,13 @@
         else
           true
 
-  $ -> $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+  $ ->
+    $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+    $("a").live "click", ->
+      setTimeout(
+        -> $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+        50
+      )
 
 )(jQuery)
 
