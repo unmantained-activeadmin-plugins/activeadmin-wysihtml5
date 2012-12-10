@@ -48,22 +48,23 @@ end
 ### `:commands`
 
 * `:all`: all the available commands;
-* `:barebone`: just bold, italic, and link (default);
+* `:basic`: bold, italic, ul, ol, link, image, source (default)
+* `:barebone`: bold, italic, link, source
 * an array with one or more of the following symbols: `:bold`, `:italic`, `:underline`, `:ul`, `:ol`, `:outdent`, `:indent`, `:link`, `:image`, `:source`
 
 ### `:blocks`
 
 * `:all`: all the available blocks;
-* `:barebone`: just h3, h4, p;
-* `:none`: just p (default);
+* `:basic`: just h3, h4, h5, p (default);
+* `:barebone`: just p (default);
 * an array with one or more of the following symbols: `:h1`, `:h2`, `:h3`, `:h4`, `:h5`, `:h6`, `:p`
 
 ### `:height`
 
-* `:tiny`
-* `:small`
-* `:medium`
-* `:large`
-* `:huge`
+* `:tiny`: 70px;
+* `:small`: 90px;
+* `:medium`: 170px (default);
+* `:large`: 350px;
+* `:huge`: 450px;
 * an integer representing the height of the editor;
 

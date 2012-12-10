@@ -3,13 +3,14 @@ module Formtastic
     class Wysihtml5Input < Formtastic::Inputs::TextInput
 
       COMMANDS_PRESET = {
-        barebone: [ :bold, :italic, :link ],
+        barebone: [ :bold, :italic, :link, :source ],
+        basic: [ :bold, :italic, :ul, :ol, :link, :image, :source ],
         all: [ :bold, :italic, :underline, :ul, :ol, :outdent, :indent, :link, :image, :source ]
       }
 
       BLOCKS_PRESET = {
-        none: [ :p ],
-        barebone: [ :h3, :h4, :p ],
+        barebone: [ :p ],
+        basic: [ :h3, :h4, :h5, :p ],
         all: [ :h1, :h2, :h3, :h4, :h5, :h6, :p ]
       }
 
@@ -22,7 +23,7 @@ module Formtastic
       }
 
       def toolbar_blocks
-        blocks = input_html_options[:blocks] || :none
+        blocks = input_html_options[:blocks] || :basic
         if !blocks.is_a? Array
           blocks = BLOCKS_PRESET[blocks.to_sym]
         end
@@ -68,7 +69,7 @@ module Formtastic
           source: 'change_view'
         }
 
-        toolbar_commands = input_html_options[:commands] || :barebone
+        toolbar_commands = input_html_options[:commands] || :basic
         if !toolbar_commands.is_a? Array
           toolbar_commands = COMMANDS_PRESET[toolbar_commands.to_sym]
         end
@@ -105,7 +106,7 @@ module Formtastic
       end
 
       def to_html
-        height = input_html_options[:height] || :small
+        height = input_html_options[:height] || :medium
 
         if !height.is_a? Integer
           height = HEIGHT_PRESET[height.to_sym]
