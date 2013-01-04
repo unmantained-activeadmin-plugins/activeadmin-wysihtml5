@@ -35,7 +35,7 @@ ActiveAdmin.register Page do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :content, as: :wysihtml5, input_html: { commands: [ :link ], blocks: [ :h3, :p] }
+      f.input :content, as: :wysihtml5, commands: [ :link ], blocks: [ :h3, :p]
     end
 
     f.buttons
@@ -43,7 +43,7 @@ ActiveAdmin.register Page do
 end
 ```
 
-## Options to be passed into `input_html`
+## Options
 
 ### `:commands`
 

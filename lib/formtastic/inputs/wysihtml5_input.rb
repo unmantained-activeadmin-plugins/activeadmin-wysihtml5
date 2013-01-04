@@ -23,7 +23,7 @@ module Formtastic
       }
 
       def toolbar_blocks
-        blocks = input_html_options[:blocks] || :basic
+        blocks = options[:blocks] || input_html_options[:blocks] || :basic
         if !blocks.is_a? Array
           blocks = BLOCKS_PRESET[blocks.to_sym]
         end
@@ -69,7 +69,7 @@ module Formtastic
           source: 'change_view'
         }
 
-        toolbar_commands = input_html_options[:commands] || :basic
+        toolbar_commands = options[:commands] || input_html_options[:commands] || :basic
         if !toolbar_commands.is_a? Array
           toolbar_commands = COMMANDS_PRESET[toolbar_commands.to_sym]
         end
@@ -106,7 +106,7 @@ module Formtastic
       end
 
       def to_html
-        height = input_html_options[:height] || :medium
+        height = options[:height] || input_html_options[:height] || :medium
 
         if !height.is_a? Integer
           height = HEIGHT_PRESET[height.to_sym]
