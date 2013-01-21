@@ -156,7 +156,7 @@
 
   $ ->
     $('.activeadmin-wysihtml5').activeAdminWysihtml5()
-    $("a").live "click", ->
+    $(document).on "click", "a", ->
       setTimeout(
         -> $('.activeadmin-wysihtml5').activeAdminWysihtml5()
         50
