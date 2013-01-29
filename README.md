@@ -14,13 +14,14 @@ interface using [wysihtml5](https://github.com/xing/wysihtml5).
 ```ruby
 # Gemfile
 
-gem 'activeadmin-wysihtml5'
+gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 ```
 
 Now install the migrations:
 
 ```bash
-$ rake active_admin_editor:install:migrations
+$ rake activeadmin_wysihtml5:install:migrations
 $ rake db:migrate
 ```
 
