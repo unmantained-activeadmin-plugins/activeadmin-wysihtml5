@@ -155,10 +155,10 @@
           true
 
   $ ->
-    $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+    $('.activeadmin-wysihtml5:visible').activeAdminWysihtml5()
     $("a").bind "click", ->
       setTimeout(
-        -> $('.activeadmin-wysihtml5').activeAdminWysihtml5()
+        -> $('.activeadmin-wysihtml5:visible').activeAdminWysihtml5()
         50
       )
 
