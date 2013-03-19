@@ -58,7 +58,7 @@ ActiveAdmin.register Asset do
 
         # io.original_filename = params['qqfile']
 
-        @asset.storage = Dragonfly::TempObject.new(io.responds_to?(:string) ? io.string : io.read)
+        @asset.storage = Dragonfly::TempObject.new(io.respond_to?(:string) ? io.string : io.read)
         if @asset.save!
           render json: { success: true }.to_json
         else
