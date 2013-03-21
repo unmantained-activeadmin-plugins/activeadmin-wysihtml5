@@ -21,7 +21,7 @@
         position: 'fixed'
         zIndex: 1200
         left: '50%'
-        top: 140
+        top: 25
         marginLeft: - width * 0.5
       ).show()
 
