@@ -103,11 +103,11 @@
         refreshAssets = ->
           $gallery.empty()
 
-          $.getJSON '/admin/assets.json', (data) ->
+          $.getJSON '/admin/images.json', (data) ->
             $.each data, (i, asset) ->
               $img = $("<img/>")
               $img.attr
-                title: "#{asset.dimensions.width}x#{asset.dimensions.height}px"
+                # title: "#{asset.dimensions.width}x#{asset.dimensions.height}px"
                 src: asset.thumb_url
               $a = $("<a/>").attr(href: "#").append($img)
               $a.click ->
@@ -120,7 +120,7 @@
         initUploader = ->
           uploader = new qq.FileUploader
             element: $uploader.get(0)
-            action: '/admin/assets.json'
+            action: '/admin/images.json'
             onComplete: ->
               refreshAssets()
               $tab_handles.eq(1).click()
