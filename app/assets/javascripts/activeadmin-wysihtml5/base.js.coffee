@@ -134,7 +134,7 @@
               alt: $content.find("[name=alt]").val()
               title: $content.find("[name=title]").val()
             when "modal-image-gallery"
-              scale = $content.find("[name=scale]:checked").val()
+              scale = $content.find("[name=scale]:checked").val() || 'full'
               src: selectedAsset.source_url[scale]
               class: $content.find("[name=alignment]").val()
               title: $content.find("[name=title]").val()
