@@ -121,6 +121,9 @@
           uploader = new qq.FileUploader
             element: $uploader.get(0)
             action: '/admin/images.json'
+            multiple: false
+            template: '<div class="qq-uploader"><div class="qq-upload-drop-area"></div><div class="qq-upload-button">' +
+                        I18n.t("fileupload.image.button") + '</div><ul class="qq-upload-list"></ul></div>'
             onComplete: ->
               refreshAssets()
               $tab_handles.eq(1).click()
