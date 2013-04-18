@@ -21,7 +21,7 @@
         position: 'fixed'
         zIndex: 1200
         left: '50%'
-        top: 140
+        top: 25
         marginLeft: - width * 0.5
       ).show()
 
@@ -103,11 +103,11 @@
         refreshAssets = ->
           $gallery.empty()
 
-          $.getJSON '/admin/assets.json', (data) ->
+          $.getJSON '/admin/images.json', (data) ->
             $.each data, (i, asset) ->
               $img = $("<img/>")
               $img.attr
-                title: "#{asset.dimensions.width}x#{asset.dimensions.height}px"
+                # title: "#{asset.dimensions.width}x#{asset.dimensions.height}px"
                 src: asset.thumb_url
               $a = $("<a/>").attr(href: "#").append($img)
               $a.click ->
@@ -120,7 +120,10 @@
         initUploader = ->
           uploader = new qq.FileUploader
             element: $uploader.get(0)
-            action: '/admin/assets.json'
+            action: '/admin/images.json'
+            multiple: false
+            template: '<div class="qq-uploader"><div class="qq-upload-drop-area"></div><div class="qq-upload-button">' +
+                        I18n.t("fileupload.image.button") + '</div><ul class="qq-upload-list"></ul></div>'
             onComplete: ->
               refreshAssets()
               $tab_handles.eq(1).click()
@@ -134,7 +137,7 @@
               alt: $content.find("[name=alt]").val()
               title: $content.find("[name=title]").val()
             when "modal-image-gallery"
-              scale = $content.find("[name=scale]:checked").val()
+              scale = $content.find("[name=scale]:checked").val() || 'full'
               src: selectedAsset.source_url[scale]
               class: $content.find("[name=alignment]").val()
               title: $content.find("[name=title]").val()

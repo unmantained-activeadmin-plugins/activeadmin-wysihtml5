@@ -16,7 +16,7 @@
   background-color: white
   width: 550px
   border-radius: 5px
-  +box-shadow(0 4px 8px rgba(black, 0.5))
+  box-shadow: 0 4px 8px rgba(black, 0.5)
   display: none
 
   .modal-title
@@ -42,7 +42,7 @@
         a
           background-color: #F1F1F1
           border-radius: 6px
-          +box-shadow(0 2px 2px rgba(black, 0.3))
+          box-shadow: 0 2px 2px rgba(black, 0.3)
           padding: 5px 11px
           display: inline-block
           margin-right: 6px
@@ -51,7 +51,7 @@
           font-weight: bold
 
           &.active
-            +box-shadow(0 2px 2px rgba(black, 0.3) inset)
+            box-shadow: 0 2px 2px rgba(black, 0.3) inset
 
     .input
       margin-bottom: 8px
@@ -88,11 +88,11 @@
       padding: 15px
       background-color: #F1F1F1
       border-radius: 2px
-      +box-shadow(0 1px 1px rgba(black, 0.2) inset)
+      box-shadow: 0 1px 1px rgba(black, 0.2) inset
 
     .assets-container
       ul
-        max-height: 300px
+        max-height: 200px
         overflow: auto
         margin: 0
         padding: 0
@@ -143,6 +143,7 @@
     border-bottom-radius: 5px
 
     .button
+      cursor: pointer
       +light-button
 
       &.primary
@@ -158,8 +159,10 @@ body.active_admin form
 
   .activeadmin-wysihtml5
     +nested-reset
-    float: left
-    width: 100% - 11%
+    // float: left
+    // width: 100% - 11%
+    width: 76%
+    margin-left: 20%
 
     &> textarea
       font-size: 13px
@@ -194,7 +197,7 @@ body.active_admin form
 
           &.wysihtml5-command-active, &.wysihtml5-action-active
             +linear-gradient(darken(#E6E6E6, 10%), #E6E6E6)
-            +box-shadow(inset 0 1px 2px rgba(black, 0.4))
+            box-shadow: 0 1px 2px rgba(black, 0.4) inset
 
           &:hover
             background: #E6E6E6
@@ -269,11 +272,11 @@ body.active_admin form
             display: none
             position: absolute
             z-index: 2
-            top: 28px
+            top: 26px
             left: 0px
             width: 140px
             background: white
-            +box-shadow(0 2px 5px rgba(black, 0.5))
+            box-shadow: 0 2px 5px rgba(black, 0.5)
             padding: 10px 0
 
             li a

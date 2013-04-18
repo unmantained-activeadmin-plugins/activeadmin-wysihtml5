@@ -16,6 +16,5 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,vendor}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "activeadmin"
-  s.add_dependency "activeadmin-dragonfly"
+  s.add_dependency "activeadmin", "~> 0.5"
 end
