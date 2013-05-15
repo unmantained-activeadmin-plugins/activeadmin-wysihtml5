@@ -1,0 +1,53 @@
+pt-BR:
+  formtastic:
+    wysihtml5:
+      command:
+        bold: "Negrito"
+        italic: "Italico"
+        link: "Link"
+        image: "Imagem"
+        ul: "Lista não ordenada"
+        ol: "Lista ordenada"
+        source: "Exibir HTML"
+        underline: "Sublinhado"
+        outdent: "Outdent"
+        indent: "Indent"
+      block_style: "Estilo de bloco"
+      blocks:
+        h1: "Cabeçalho 1"
+        h2: "Cabeçalho 2"
+        h3: "Cabeçalho 3"
+        h4: "Cabeçalho 4"
+        h5: "Cabeçalho 5"
+        h6: "Cabeçalho 6"
+        p: "Parágrafo"
+
+      dialog:
+        cancel: "Cancelar"
+        ok: "OK"
+        image:
+          dialog_title: "Insira uma nova imagem"
+          url_title: "Imagem externa"
+          gallery_title: "Galeria"
+          upload_title: "Enviar"
+          url: "URL:"
+          alignment: "Alinhamento:"
+          default: "Nenhum"
+          left: "Esquerda"
+          right: "Direito"
+          scale: "Proporção:"
+          alt: "Texto alternativo:"
+          title: "campo <code>title</code>:"
+        link:
+          dialog_title: "Insira um novo link"
+          url_title: "URL"
+          email_title: "Email"
+          anchor_title: "Âncora"
+          url: "URL:"
+          text: "Texto:"
+          rel: "campo <code>rel</code>:"
+          title: "campo <code>title</code>:"
+          email: "Email:"
+          anchor: "Âncora:"
+          blank: "Este link abrirá em uma nova página/aba"
+          your_text_here: "Seu texto aqui"
