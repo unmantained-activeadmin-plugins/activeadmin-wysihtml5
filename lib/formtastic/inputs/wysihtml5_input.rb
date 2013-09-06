@@ -5,7 +5,7 @@ module Formtastic
       COMMANDS_PRESET = {
         barebone: [ :bold, :italic, :link, :source ],
         basic: [ :bold, :italic, :ul, :ol, :link, :image, :source ],
-        all: [ :bold, :italic, :underline, :ul, :ol, :outdent, :indent, :link, :image, :source ]
+        all: [ :bold, :italic, :underline, :ul, :ol, :outdent, :indent, :link, :image, :video, :source ]
       }
 
       BLOCKS_PRESET = {
@@ -59,11 +59,13 @@ module Formtastic
           [ :ul, :ol, :outdent, :indent ],
           [ :link ],
           [ :image ],
+          [ :video ],
           [ :source ]
         ]
         command_mapper = {
           link: 'createLink',
           image: 'insertImage',
+          video: 'insertVideo',
           ul: 'insertUnorderedList',
           ol: 'insertOrderedList',
           source: 'change_view'
@@ -249,6 +251,35 @@ module Formtastic
                     <option value="wysiwyg-float-right">#{I18n.t("wysihtml5.dialog.image.right")}</option>
                   </select>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a data-modal="close" data-action="cancel" class="button">#{I18n.t("wysihtml5.dialog.cancel")}</a>
+            <a data-modal="close" data-action="save" class="button primary">#{I18n.t("wysihtml5.dialog.ok")}</a>
+          </div>
+        </div>
+        <div class="activeadmin-wysihtml5-modal modal-video">
+          <div class="modal-title">
+            #{I18n.t("wysihtml5.dialog.video.dialog_title")}
+          </div>
+          <div class="modal-content">
+            <div data-tab="1" id="modal-video-url">
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.video.url")}</label>
+                <input type="text" name="url" placeholder="http://www.youtube.com/watch?v=oHg5SJYRHA0">
+              </div>
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.video.title")}</label>
+                <input type="text" name="title" placeholder="#{I18n.t("wysihtml5.dialog.video.your_text_here")}">
+              </div>
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.video.width")}</label>
+                <input type="text" name="width" value="560">
+              </div>
+              <div class="input string">
+                <label>#{I18n.t("wysihtml5.dialog.video.height")}</label>
+                <input type="text" name="height" value="315">
               </div>
             </div>
           </div>

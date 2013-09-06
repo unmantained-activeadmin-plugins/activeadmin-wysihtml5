@@ -180,6 +180,11 @@ var wysihtml5ParserRules = {
         "width": "numbers",
         "height": "numbers",
         "allowtransparency": "alt"
+      },
+      "allow_attributes": [ "src", "title" ],
+      "set_attributes":{
+        "frameborder":"0",
+        "allowfullscreen": ""
       }
     },
     "figcaption": {
