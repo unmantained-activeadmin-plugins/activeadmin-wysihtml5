@@ -1,5 +1,4 @@
 class Asset < ActiveRecord::Base
-  attr_accessible :storage, :retained_storage, :remove_storage, :storage_url
   image_accessor :storage
 
   def percentage_thumb_url(size)
@@ -28,3 +27,4 @@ class Asset < ActiveRecord::Base
     }
   end
 end
+
