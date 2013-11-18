@@ -8,7 +8,7 @@ ActiveAdmin.register Asset do
     f.inputs do
       f.input :storage, as: :dragonfly, input_html: { components: [:preview, :upload, :url, :remove ] }
     end
-    f.buttons
+    f.actions
   end
 
   show do
