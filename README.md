@@ -51,7 +51,7 @@ end
 * `:all`: all the available commands;
 * `:basic`: bold, italic, ul, ol, link, image, source (default)
 * `:barebone`: bold, italic, link, source
-* an array with one or more of the following symbols: `:bold`, `:italic`, `:underline`, `:ul`, `:ol`, `:outdent`, `:indent`, `:link`, `:image`, `:source`
+* an array with one or more of the following symbols: `:bold`, `:italic`, `:underline`, `:ul`, `:ol`, `:outdent`, `:indent`, `:link`, `:image`, `:video`, `:source`
 
 ### `:blocks`
 

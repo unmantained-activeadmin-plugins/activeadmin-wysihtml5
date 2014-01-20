@@ -154,6 +154,48 @@
         else
           true
 
+      $toolbar.find('a[data-wysihtml5-command=insertVideo]').click ->
+        $modal = $editor.find(".modal-video").clone()
+        $tab_contents = $modal.find("[data-tab]")
+
+        parseVideoUrl = (url) ->
+          sources = [
+            {
+              provider: "youtube"
+              regexp: /(?:youtube.com\/watch\?.*v=|youtu.be\/)([a-zA-Z0-9\-_]+)/
+              result: "//www.youtube.com/embed/{{id}}"
+            },
+            {
+              provider: "vimeo"
+              regexp: /(?:vimeo.com\/)(\d+)/
+              result: "//player.vimeo.com/video/{{id}}"
+            }
+          ]
+
+          for source in sources
+            if match = url.match(source['regexp'])
+              return source['result'].replace("{{id}}", match[1])
+
+          url
+
+        $modal.find('[data-action=save]').click ->
+          $content = $tab_contents.filter(":visible")
+          el =
+            src: parseVideoUrl($content.find("[name=url]").val())
+            title: $content.find("[name=title]").val()
+            height: $content.find("[name=height]").val()
+            width: $content.find("[name=width]").val()
+
+          editor.currentView.element.focus()
+          editor.composer.commands.exec("insertVideo", el)
+
+        activeButton = $(this).hasClass("wysihtml5-command-active")
+        if !activeButton
+          $modal.modal()
+          false
+        else
+          true
+
   $ ->
     $('.activeadmin-wysihtml5:visible').activeAdminWysihtml5()
     $("a").bind "click", ->
