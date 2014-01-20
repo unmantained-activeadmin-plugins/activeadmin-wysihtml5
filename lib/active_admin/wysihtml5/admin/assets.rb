@@ -8,7 +8,7 @@ ActiveAdmin.register Asset do
     f.inputs do
       f.input :storage, as: :dragonfly, input_html: { components: [:preview, :upload, :url, :remove ] }
     end
-    f.buttons
+    f.actions
   end
 
   show do
@@ -35,7 +35,9 @@ ActiveAdmin.register Asset do
   end
 
   controller do
-
+    def permitted_params
+      params.permit asset: [:storage, :retained_storage, :remove_storage, :storage_url]
+    end
     def create
       # If an app is using Rack::RawUpload, it can just use
       # params['file'] and not worry with original_filename parsing.
@@ -71,3 +73,4 @@ ActiveAdmin.register Asset do
 
   end
 end
+
