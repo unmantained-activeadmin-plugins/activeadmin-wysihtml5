@@ -18,13 +18,14 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/matjack1/activeadmin-dragonfly.git
-  revision: 3a4ff4f87bf5f926ac8d38b938299ac9089cfc83
+  remote: git://github.com/stefanoverna/activeadmin-dragonfly.git
+  revision: 452da70b194cdda1148ed0119a58a83cafe94f4d
   branch: master
   specs:
     activeadmin-dragonfly (0.0.2)
       activeadmin
       dragonfly (= 0.9.15)
+      rack-cache
 
 PATH
   remote: .
@@ -117,6 +118,8 @@ GEM
       activerecord (>= 3.0)
     polyglot (0.3.3)
     rack (1.5.2)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.2)
@@ -175,6 +178,5 @@ DEPENDENCIES
   activeadmin-dragonfly!
   activeadmin-wysihtml5!
   coffee-rails
-  jquery-rails
   sass-rails
   uglifier
