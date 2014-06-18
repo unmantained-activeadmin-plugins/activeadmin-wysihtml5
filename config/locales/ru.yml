@@ -29,7 +29,7 @@ ru:
         image:
           dialog_title: "Добавьте изображение"
           url_title: "Изображение из внешнего источника"
-          gallery_title: "Галлерея"
+          gallery_title: "Галерея"
           upload_title: "Загрузить"
           url: "URL:"
           alignment: "Выравнивание:"
