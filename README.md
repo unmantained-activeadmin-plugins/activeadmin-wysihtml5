@@ -25,6 +25,12 @@ $ rake activeadmin_wysihtml5:install:migrations
 $ rake db:migrate
 ```
 
+Generate dragonfly configuration:
+
+```bash
+$ rails generate dragonfly
+````
+
 ## Usage
 This gem provides you with a custom formtastic input called `:wysihtml5` to build out an html editor.
 All you have to do is specify the `:as` option for your inputs.
@@ -68,4 +74,8 @@ end
 * `:large`: 350px;
 * `:huge`: 450px;
 * an integer representing the height of the editor;
+
+## Use s3 storage
+
+[instructions found here](https://github.com/markevans/dragonfly-s3_data_store/blob/master/README.md)
 
