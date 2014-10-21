@@ -173,7 +173,7 @@ module Formtastic
             <div data-tab="1" id="modal-link-anchor">
               <div class="input string">
                 <label>#{I18n.t("wysihtml5.dialog.link.anchor")}</label>
-                <input type="text" name="anchor" placeholder="anchor-name">
+                <input type="text" name="anchor" placeholder="#{I18n.t("wysihtml5.dialog.link.anchor_name")}">
               </div>
               <div class="input string">
                 <label>#{I18n.t("wysihtml5.dialog.link.text")}</label>
