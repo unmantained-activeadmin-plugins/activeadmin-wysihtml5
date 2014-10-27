@@ -1,5 +1,5 @@
 class Asset < ActiveRecord::Base
-  image_accessor :storage
+  dragonfly_accessor :storage
 
   def percentage_thumb_url(size)
     width = (storage.width * size).ceil
