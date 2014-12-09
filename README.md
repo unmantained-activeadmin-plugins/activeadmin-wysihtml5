@@ -1,5 +1,11 @@
 # `activeadmin-wysihtml5`
 
+### :warning: Unmaintained :warning:
+
+Sorry, but I no longer work on ActiveAdmin often enough to justify mantaining this gem. Take it as it is. If you are interested to update and maintain the gem, please let me know! :heart:
+
+## Screenshots
+
 ![activeadmin-wysihtml5 screenshot](https://raw.github.com/stefanoverna/activeadmin-wysihtml5/master/screenshot.png)
 
 ![activeadmin-wysihtml5 screenshot](https://raw.github.com/stefanoverna/activeadmin-wysihtml5/master/link_screenshot.png)
