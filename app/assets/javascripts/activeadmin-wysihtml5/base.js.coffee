@@ -18,7 +18,7 @@
 
       $content.css(
         display: 'block'
-        position: 'fixed'
+        position: 'absolute'
         zIndex: 1200
         left: '50%'
         top: 140
