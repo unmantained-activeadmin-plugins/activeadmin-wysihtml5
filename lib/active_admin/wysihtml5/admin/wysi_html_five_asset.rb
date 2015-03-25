@@ -1,4 +1,4 @@
-ActiveAdmin.register Asset do
+ActiveAdmin.register WysiHtmlFiveAsset do
 
   index as: :grid do |asset|
     link_to(image_tag(asset.storage.thumb("100x100#").url), admin_asset_path(asset))
@@ -42,7 +42,7 @@ ActiveAdmin.register Asset do
       # If an app is using Rack::RawUpload, it can just use
       # params['file'] and not worry with original_filename parsing.
       if params['file']
-        @asset = Asset.new
+        @asset = WysiHtmlFiveAsset.new
         @asset.storage = params['file']
 
         if @asset.save!
@@ -51,7 +51,7 @@ ActiveAdmin.register Asset do
           render nothing: true, status: 500 and return
         end
       elsif params['qqfile']
-        @asset = Asset.new
+        @asset = WysiHtmlFiveAsset.new
         io = request.env['rack.input']
         # throw io
 
@@ -73,4 +73,3 @@ ActiveAdmin.register Asset do
 
   end
 end
-
