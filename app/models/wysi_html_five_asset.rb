@@ -1,4 +1,4 @@
-class Asset < ActiveRecord::Base
+class WysiHtmlFiveAsset < ActiveRecord::Base
   image_accessor :storage
 
   def percentage_thumb_url(size)
@@ -27,4 +27,3 @@ class Asset < ActiveRecord::Base
     }
   end
 end
-
